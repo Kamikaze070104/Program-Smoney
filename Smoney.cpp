@@ -146,16 +146,16 @@ int main() {
         break;
     }
     case 4: {
+        system("cls");
         cout << "=================================================\n";
         cout << "=========== Anda Telah Berhasil LogOut ==========\n";
         cout << "=================================================\n\n";
-        system("cls");
         return main();
         break;
     }
     case 5: {
-        cout << "Anda Berhasil Keluar!\n";
         system("cls");
+        cout << "Anda Berhasil Keluar!\n";
         return 0;
         break;
     }
@@ -169,7 +169,6 @@ int main() {
       cin >> ulangi;
   } while (ulangi == "y");
     system("cls");
-    system("pause");
     cout << "Anda Berhasil Log Out\n";
     return main();
 }
