@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unistd.h>
+#include <string>
 
 using namespace std;
 /* Aplikasi Smoney kelompok 3
@@ -62,9 +63,11 @@ double HitungTotal(Node *head) {
     saldo += head->pemasukan - head->pengeluaran;
     head = head->next;
   }
+  return saldo;
 }
 
 int main() {
+  Node* head = NULL;
   login login;
   system("cls");
   cout << "===================================================\n";
@@ -92,4 +95,62 @@ int main() {
     cout << "Login salah! Kesempatan Anda " << i << " kali lagi!!\n";
     cout << "===================================================\n\n";
   }
+  int menu;
+  string ulangi;
+  do {
+    cout << "Menu Smoney :\n";
+    cout << "1. Tambah pemasukan/pengeluaran\n";
+    cout << "2. Tampilkan data\n";
+    cout << "3. Hitung banyak Saldo\n";
+    cout << "4. LogOut\n";
+    cout << "5. Exit\n";
+    cout << "pilih Menu : ";
+    cin >> menu;
+
+    switch (menu) {
+    case 1: {
+        int id;
+        string nama;
+        double pemasukan, pengeluaran;
+        cout << "\nMasukkan ID: ";
+        cin >> id;
+        cout << "Masukkan nama: ";
+        cin.ignore();
+        getline(cin, nama);
+        cout << "Masukkan jumlah pemasukan: ";
+        cin >> pemasukan;
+        cout << "Masukkan jumlah pengeluaran: ";
+        cin >> pengeluaran;
+
+        DataBaru(&head, id, nama, pemasukan, pengeluaran);
+        cout << "Data Berhasil Ditambahkan!\n";
+        break;
+    }
+    case 2: {
+        cout << "\n";
+        LihatData(head);
+        break;
+    }
+    case 3: {
+        double saldo = HitungTotal(head);
+        cout <<"\n Total Saldo : "<< saldo << endl;
+    }
+    case 4: {
+        cout << "\nAnda Berhasil LogOut!\n";
+        return main();
+    }
+    case 5: {
+        cout << "\nAnda Berhasil Keluar!\n";
+        return 0;
+    }
+    default: {
+        cout << "\nMaaf, Menu Tidak Ditemukan\n";
+        break;
+    }
+      cout << "ke menu/log out(y/t) ";
+      cin >> ulangi;
+    }
+  } while (ulangi == "y");
+  cout << "\nAnda Berhasil Log Out\n";
+    return main();
 }
