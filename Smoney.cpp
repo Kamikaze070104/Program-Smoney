@@ -95,7 +95,10 @@ int main() {
   int menu;
   string ulangi;
   do {
-    cout << "Menu Smoney :\n";
+    system("cls");
+    cout << "=================================================\n";
+    cout << "============== Daftar Menu Smoney ===============\n";
+    cout << "=================================================\n\n";
     cout << "1. Tambah pemasukan/pengeluaran\n";
     cout << "2. Tampilkan data\n";
     cout << "3. Hitung banyak Saldo\n";
@@ -106,8 +109,12 @@ int main() {
 
     switch (menu) {
     case 1: {
+      system("cls");
         string Tanggal;
         double pemasukan, pengeluaran;
+        cout << "=================================================\n";
+        cout << "========= Tambah Pemasukan/Pengeluaran ==========\n";
+        cout << "=================================================\n\n";
 
         cout << "Masukkan Tanggal : ";
         cin.ignore();
@@ -122,34 +129,47 @@ int main() {
         break;
     }
     case 2: {
-        cout << "\n";
+        system("cls");
+        cout << "=================================================\n";
+        cout << "============== Menampilkan Data =================\n";
+        cout << "=================================================\n\n";
         LihatData(head);
         break;
     }
     case 3: {
+        system("cls");
+        cout << "=================================================\n";
+        cout << "============ Menghitung total Saldo =============\n";
+        cout << "=================================================\n\n";
         double saldo = HitungTotal(head);
-        cout << "\nTotal Saldo : " << saldo << endl;
+        cout << "Total Saldo : " << saldo << endl;
         break;
     }
     case 4: {
-        cout << "\nAnda Berhasil LogOut!\n";
+        cout << "=================================================\n";
+        cout << "=========== Anda Telah Berhasil LogOut ==========\n";
+        cout << "=================================================\n\n";
+        system("cls");
         return main();
         break;
     }
     case 5: {
-        cout << "\nAnda Berhasil Keluar!\n";
+        cout << "Anda Berhasil Keluar!\n";
+        system("cls");
         return 0;
         break;
     }
     default: {
-        cout << "\nMaaf, Menu Tidak Ditemukan\n";
+        system("cls");
+        cout << "Maaf, Menu Tidak Ditemukan\n";
         break;
     } 
     }
       cout << "ke menu/log out(y/t) ";
       cin >> ulangi;
-  }
-    while (ulangi == "y");
-    cout << "\nAnda Berhasil Log Out\n";
+  } while (ulangi == "y");
+    system("cls");
+    system("pause");
+    cout << "Anda Berhasil Log Out\n";
     return main();
 }
