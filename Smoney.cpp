@@ -14,11 +14,61 @@ struct login {
   int counter = 9;
 };
 
+struct Node {
+  int id;
+  string nama;
+  double pemasukan, pengeluaran;
+  Node* next;
+};
+
+void DataBaru(Node **head, int id, string nama, double pemasukan, double pengeluaran) {
+  Node *Newnode = new Node;
+  Newnode->id = id;
+  Newnode->nama = nama;
+  Newnode->pemasukan = pemasukan;
+  Newnode->pengeluaran = pengeluaran;
+  Newnode->next = NULL;
+
+  if (*head == NULL) {
+    *head = Newnode;
+    return;
+  }
+
+  Node *last = *head;
+  while (last->next != NULL) {
+    last = last->next;
+  }
+  last->next = Newnode;
+}
+
+void LihatData(Node *head) {
+  if (head == NULL) {
+    cout << " Data tidak ditemukan!" << endl;
+    return;
+  }
+
+  while (head != NULL) {
+    cout << "ID : " << head->id << endl;
+    cout << "Name : " << head->nama << endl;
+    cout << "pemasukan : " << head->pemasukan << endl;
+    cout << "pengeluaran : " << head->pengeluaran << endl;
+    head = head->next;
+  }
+}
+
+double HitungTotal(Node *head) {
+  double saldo = 0;
+  while (head != NULL) {
+    saldo += head->pemasukan - head->pengeluaran;
+    head = head->next;
+  }
+}
+
 int main() {
   login login;
   system("cls");
   cout << "===================================================\n";
-  cout << "========== Selamat datang di Smoney ===============\n";
+  cout << "============ Selamat datang di Smoney =============\n";
   cout << "===================================================\n\n";
   for (int i = 2; i >= 0; --i) {
     cout << "Silahkan Login\n\n";
