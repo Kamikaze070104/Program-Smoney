@@ -16,16 +16,14 @@ struct login {
 };
 
 struct Node {
-  int id;
-  string nama;
+  string Tanggal;
   double pemasukan, pengeluaran;
   Node* next;
 };
 
-void DataBaru(Node **head, int id, string nama, double pemasukan, double pengeluaran) {
+void DataBaru(Node **head, string Tanggal, double pemasukan, double pengeluaran) {
   Node *Newnode = new Node;
-  Newnode->id = id;
-  Newnode->nama = nama;
+  Newnode->Tanggal = Tanggal;
   Newnode->pemasukan = pemasukan;
   Newnode->pengeluaran = pengeluaran;
   Newnode->next = NULL;
@@ -49,8 +47,7 @@ void LihatData(Node *head) {
   }
 
   while (head != NULL) {
-    cout << "ID : " << head->id << endl;
-    cout << "Name : " << head->nama << endl;
+    cout << "Tanggal : " << head->Tanggal << endl;
     cout << "pemasukan : " << head->pemasukan << endl;
     cout << "pengeluaran : " << head->pengeluaran << endl;
     head = head->next;
@@ -65,16 +62,16 @@ double HitungTotal(Node *head) {
   }
   return saldo;
 }
-
 int main() {
   Node* head = NULL;
   login login;
   system("cls");
-  cout << "===================================================\n";
-  cout << "============ Selamat datang di Smoney =============\n";
-  cout << "===================================================\n\n";
+  cout << "=================================================\n";
+  cout << "============ Selamat datang di Smoney ===========\n";
+  cout << "=================================================\n\n";
   for (int i = 2; i >= 0; --i) {
     cout << "Silahkan Login\n\n";
+
     cout << "Username: ";
     cin >> login.username;
     cout << "Password: ";
@@ -109,21 +106,19 @@ int main() {
 
     switch (menu) {
     case 1: {
-        int id;
-        string nama;
+        string Tanggal;
         double pemasukan, pengeluaran;
-        cout << "\nMasukkan ID: ";
-        cin >> id;
-        cout << "Masukkan nama: ";
+
+        cout << "Masukkan Tanggal : ";
         cin.ignore();
-        getline(cin, nama);
-        cout << "Masukkan jumlah pemasukan: ";
+        getline(cin, Tanggal);
+        cout << "Masukkan jumlah pemasukan : ";
         cin >> pemasukan;
-        cout << "Masukkan jumlah pengeluaran: ";
+        cout << "Masukkan jumlah pengeluaran : ";
         cin >> pengeluaran;
 
-        DataBaru(&head, id, nama, pemasukan, pengeluaran);
-        cout << "Data Berhasil Ditambahkan!\n";
+        DataBaru(&head, Tanggal, pemasukan, pengeluaran);
+        cout << "\nData Berhasil Ditambahkan!\n";
         break;
     }
     case 2: {
@@ -133,24 +128,28 @@ int main() {
     }
     case 3: {
         double saldo = HitungTotal(head);
-        cout <<"\n Total Saldo : "<< saldo << endl;
+        cout << "\nTotal Saldo : " << saldo << endl;
+        break;
     }
     case 4: {
         cout << "\nAnda Berhasil LogOut!\n";
         return main();
+        break;
     }
     case 5: {
         cout << "\nAnda Berhasil Keluar!\n";
         return 0;
+        break;
     }
     default: {
         cout << "\nMaaf, Menu Tidak Ditemukan\n";
         break;
+    } 
     }
       cout << "ke menu/log out(y/t) ";
       cin >> ulangi;
-    }
-  } while (ulangi == "y");
-  cout << "\nAnda Berhasil Log Out\n";
+  }
+    while (ulangi == "y");
+    cout << "\nAnda Berhasil Log Out\n";
     return main();
 }
