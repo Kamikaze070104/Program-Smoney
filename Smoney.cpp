@@ -72,18 +72,17 @@ int main() {
   cout << "============ Selamat datang di Smoney ===========\n";
   cout << "=================================================\n\n";
   for (int i = 2; i >= 0; --i) {
-    cout << "Silahkan Login\n\n";
-
+    cout << "Silahkan Login\n";
     cout << "Username: ";
     cin >> login.username;
     cout << "Password: ";
     cin >> login.pass;
-    system("cls");
     if (login.pass == login.pw_true && login.username == login.usn_true) {
       cout << "berhasil login!\n";
       break;
     } else if (i == 0) {
       while (login.counter >= 1) {
+        system("cls");
         cout << "\rAnda tidak diperkenankan masuk, coba lagi dalam: " << login.counter;
         sleep(1);
         login.counter--;
@@ -91,13 +90,14 @@ int main() {
       return main();
       break;
     }
+    system("cls");
     cout << "Login salah! Kesempatan Anda " << i << " kali lagi!!\n";
     cout << "===================================================\n\n";
   }
   int menu;
   string ulangi;
+  system("cls");
   do {
-    system("cls");
     cout << "=================================================\n";
     cout << "============== Daftar Menu Smoney ===============\n";
     cout << "=================================================\n\n";
@@ -108,7 +108,22 @@ int main() {
     cout << "5. Exit\n";
     cout << "pilih Menu : ";
     cin >> menu;
-
+    while (cin.fail()) {
+      cin.clear();
+      cin.ignore(256, '\n');
+      system("cls");
+      cout << "maaf, inputan hanya bisa berupa angka yang tertera pada menu\n\n";
+      cout << "=================================================\n";
+      cout << "============== Daftar Menu Smoney ===============\n";
+      cout << "=================================================\n\n";
+      cout << "1. Tambah pemasukan/pengeluaran\n";
+      cout << "2. Tampilkan data\n";
+      cout << "3. Hitung banyak Saldo\n";
+      cout << "4. LogOut\n";
+      cout << "5. Exit\n";
+      cout << "pilih Menu : ";
+      cin >> menu;
+    }
     switch (menu) {
     case 1: {
       system("cls");
@@ -117,13 +132,13 @@ int main() {
         cout << "=================================================\n";
         cout << "========= Tambah Pemasukan/Pengeluaran ==========\n";
         cout << "=================================================\n\n";
-
         cout << "Masukkan Tanggal : ";
         cin >> tanggal;
          while (tanggal <= 0 || tanggal > 31 || cin.fail()){
           cin.clear();
           cin.ignore(256, '\n');
-          if (tanggal > 31){
+          if (tanggal > 31) {
+            system("cls");
             cout << "Pastikan memasukkan tanggal 1-31!.\n";
           }
         cout << "Tanggal harus berupa angka, dan tidak boleh 0!\n";
@@ -135,7 +150,8 @@ int main() {
          while (bulan <= 0 || bulan > 12 || cin.fail()){
           cin.clear();
           cin.ignore(256, '\n');
-          if (bulan > 12){
+          if (bulan > 12) {
+            system("cls");
             cout << "Pastikan memasukkan bulanl 1-12!.\n";
           }
         cout << "bulan harus berupa angka, dan tidak boleh 0!\n";
@@ -143,26 +159,28 @@ int main() {
         cin >> bulan;
          }
          cout << "Masukkan tahun : ";
-        cin >> tahun;
+         cin >> tahun;
          while (tahun <= 0 || cin.fail()){
-          cin.clear();
-          cin.ignore(256, '\n');
-          cout << "tahun harus berupa angka, dan tidak boleh 0!\n";
-          cout << "Masukkan tahun : ";
-          cin >> tahun;
+         cin.clear();
+         cin.ignore(256, '\n');
+         cout << "tahun harus berupa angka dan tidak boleh 0!\n";
+         cout << "Masukkan tahun : ";
+         cin >> tahun;
         }  
         cout << "Masukkan jumlah pemasukan : ";
         cin >> pemasukan;
         while (pemasukan < 0 || cin.fail()) {
         cin.clear();
-        cin.ignore(256,'\n');
+        cin.ignore(256, '\n');
+        system("cls");
         cout << "Maaf, anda harus memasukan angka dan tidak boleh negatif\n";
         cout << "masukan jumlah pemasukan : ";
         cin>> pemasukan;
         }
         cout << "Masukkan jumlah pengeluaran : ";
         cin >> pengeluaran;
-        while (pengeluaran < 0|| cin.fail()) {
+        while (pengeluaran < 0 || cin.fail()) {
+        system("cls");
         cout << "Maaf, anda harus memasukan angka dan tidak boleh negatif\n";
         cout << "masukan jumlah pengeluaran : ";
         cin>> pengeluaran;
@@ -191,9 +209,7 @@ int main() {
     }
     case 4: {
         system("cls");
-        cout << "=================================================\n";
-        cout << "=========== Anda Telah Berhasil LogOut ==========\n";
-        cout << "=================================================\n\n";
+        cout << "Anda Telah Berhasil LogOut\n";
         return main();
         break;
     }
@@ -212,7 +228,7 @@ int main() {
       cout << "ke menu/log out(y/t) ";
       cin >> ulangi;
   } while (ulangi == "y");
-    system("cls");
-    cout << "Anda Berhasil Log Out\n";
+  system("cls");
+  cout << "Anda Berhasil Log Out\n";
     return main();
 }
