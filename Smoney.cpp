@@ -78,6 +78,7 @@ int main() {
     cout << "Password: ";
     cin >> login.pass;
     if (login.pass == login.pw_true && login.username == login.usn_true) {
+      system("cls");
       cout << "berhasil login!\n";
       break;
     } else if (i == 0) {
@@ -124,6 +125,7 @@ int main() {
       cout << "pilih Menu : ";
       cin >> menu;
     }
+
     switch (menu) {
     case 1: {
       system("cls");
