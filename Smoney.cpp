@@ -182,6 +182,8 @@ int main() {
         cout << "Masukkan jumlah pengeluaran : ";
         cin >> pengeluaran;
         while (pengeluaran < 0 || cin.fail()) {
+        cin.clear();
+        cin.ignore(256,'\n');
         system("cls");
         cout << "Maaf, anda harus memasukan angka dan tidak boleh negatif\n";
         cout << "masukan jumlah pengeluaran : ";
