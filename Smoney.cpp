@@ -16,14 +16,16 @@ struct login {
 };
 
 struct Node {
-  string Tanggal;
+  int tanggal,tahun,bulan;
   double pemasukan, pengeluaran;
   Node* next;
 };
 
-void DataBaru(Node **head, string Tanggal, double pemasukan, double pengeluaran) {
+void DataBaru(Node **head, int tanggal,int bulan, int tahun, double pemasukan, double pengeluaran) {
   Node *Newnode = new Node;
-  Newnode->Tanggal = Tanggal;
+  Newnode->tanggal = tanggal;
+  Newnode->bulan = bulan;
+  Newnode->tahun = tahun;
   Newnode->pemasukan = pemasukan;
   Newnode->pengeluaran = pengeluaran;
   Newnode->next = NULL;
@@ -47,7 +49,7 @@ void LihatData(Node *head) {
   }
 
   while (head != NULL) {
-    cout << "Tanggal : " << head->Tanggal << endl;
+    cout << "Tanggal : " << head->tanggal << "/"<<head->bulan<<"/"<<head->tahun << endl;
     cout << "pemasukan : " << head->pemasukan << endl;
     cout << "pengeluaran : " << head->pengeluaran << endl;
     head = head->next;
@@ -110,21 +112,63 @@ int main() {
     switch (menu) {
     case 1: {
       system("cls");
-        string Tanggal;
+        int tanggal, tahun, bulan;
         double pemasukan, pengeluaran;
         cout << "=================================================\n";
         cout << "========= Tambah Pemasukan/Pengeluaran ==========\n";
         cout << "=================================================\n\n";
 
         cout << "Masukkan Tanggal : ";
-        cin.ignore();
-        getline(cin, Tanggal);
+        cin >> tanggal;
+         while (tanggal <= 0 || tanggal > 31 || cin.fail()){
+          cin.clear();
+          cin.ignore(256, '\n');
+          if (tanggal > 31){
+            cout << "Pastikan memasukkan tanggal 1-31!.\n";
+          }
+        cout << "Tanggal harus berupa angka, dan tidak boleh 0!\n";
+        cout << "Masukkan Tanggal : ";
+        cin >> tanggal;
+         }
+         cout << "Masukkan bulan : ";
+        cin >> bulan;
+         while (bulan <= 0 || bulan > 12 || cin.fail()){
+          cin.clear();
+          cin.ignore(256, '\n');
+          if (bulan > 12){
+            cout << "Pastikan memasukkan bulanl 1-12!.\n";
+          }
+        cout << "bulan harus berupa angka, dan tidak boleh 0!\n";
+        cout << "Masukkan bulan : ";
+        cin >> bulan;
+         }
+         cout << "Masukkan tahun : ";
+        cin >> tahun;
+         while (tahun <= 0 || cin.fail()){
+          cin.clear();
+          cin.ignore(256, '\n');
+          cout << "tahun harus berupa angka, dan tidak boleh 0!\n";
+          cout << "Masukkan tahun : ";
+          cin >> tahun;
+        }  
         cout << "Masukkan jumlah pemasukan : ";
         cin >> pemasukan;
+        while (pemasukan < 0 || cin.fail()) {
+        cin.clear();
+        cin.ignore(256,'\n');
+        cout << "Maaf, anda harus memasukan angka dan tidak boleh negatif\n";
+        cout << "masukan jumlah pemasukan : ";
+        cin>> pemasukan;
+        }
         cout << "Masukkan jumlah pengeluaran : ";
         cin >> pengeluaran;
+        while (pengeluaran < 0|| cin.fail()) {
+        cout << "Maaf, anda harus memasukan angka dan tidak boleh negatif\n";
+        cout << "masukan jumlah pengeluaran : ";
+        cin>> pengeluaran;
+        }
 
-        DataBaru(&head, Tanggal, pemasukan, pengeluaran);
+        DataBaru(&head, tanggal,bulan,tahun, pemasukan, pengeluaran);
         cout << "\nData Berhasil Ditambahkan!\n";
         break;
     }
