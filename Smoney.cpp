@@ -1,6 +1,7 @@
 #include <iostream>
-#include <unistd.h>
 #include <string>
+#include <unistd.h>
+
 
 using namespace std;
 /* Aplikasi Smoney kelompok 3
@@ -16,12 +17,13 @@ struct login {
 };
 
 struct Node {
-  int tanggal,tahun,bulan;
+  int tanggal, tahun, bulan;
   double pemasukan, pengeluaran;
-  Node* next;
+  Node *next;
 };
 
-void DataBaru(Node **head, int tanggal,int bulan, int tahun, double pemasukan, double pengeluaran) {
+void DataBaru(Node **head, int tanggal, int bulan, int tahun, double pemasukan,
+              double pengeluaran) {
   Node *Newnode = new Node;
   Newnode->tanggal = tanggal;
   Newnode->bulan = bulan;
@@ -49,7 +51,8 @@ void LihatData(Node *head) {
   }
 
   while (head != NULL) {
-    cout << "Tanggal : " << head->tanggal << "/"<<head->bulan<<"/"<<head->tahun << endl;
+    cout << "Tanggal : " << head->tanggal << "/" << head->bulan << "/"
+         << head->tahun << endl;
     cout << "pemasukan : " << head->pemasukan << endl;
     cout << "pengeluaran : " << head->pengeluaran << endl;
     head = head->next;
@@ -65,7 +68,7 @@ double HitungTotal(Node *head) {
   return saldo;
 }
 int main() {
-  Node* head = NULL;
+  Node *head = NULL;
   login login;
   system("cls");
   cout << "=================================================\n";
@@ -84,7 +87,8 @@ int main() {
     } else if (i == 0) {
       while (login.counter >= 1) {
         system("cls");
-        cout << "\rAnda tidak diperkenankan masuk, coba lagi dalam: " << login.counter;
+        cout << "\rAnda tidak diperkenankan masuk, coba lagi dalam: "
+             << login.counter;
         sleep(1);
         login.counter--;
       }
@@ -113,7 +117,8 @@ int main() {
       cin.clear();
       cin.ignore(256, '\n');
       system("cls");
-      cout << "maaf, inputan hanya bisa berupa angka yang tertera pada menu\n\n";
+      cout
+          << "maaf, inputan hanya bisa berupa angka yang tertera pada menu\n\n";
       cout << "=================================================\n";
       cout << "============== Daftar Menu Smoney ===============\n";
       cout << "=================================================\n\n";
@@ -129,110 +134,110 @@ int main() {
     switch (menu) {
     case 1: {
       system("cls");
-        int tanggal, tahun, bulan;
-        double pemasukan, pengeluaran;
-        cout << "=================================================\n";
-        cout << "========= Tambah Pemasukan/Pengeluaran ==========\n";
-        cout << "=================================================\n\n";
-        cout << "Masukkan Tanggal : ";
-        cin >> tanggal;
-         while (tanggal <= 0 || tanggal > 31 || cin.fail()){
-          cin.clear();
-          cin.ignore(256, '\n');
-          if (tanggal > 31) {
-            system("cls");
-            cout << "Pastikan memasukkan tanggal 1-31!.\n";
-          }
+      int tanggal, tahun, bulan;
+      double pemasukan, pengeluaran;
+      cout << "=================================================\n";
+      cout << "========= Tambah Pemasukan/Pengeluaran ==========\n";
+      cout << "=================================================\n\n";
+      cout << "Masukkan Tanggal : ";
+      cin >> tanggal;
+      while (tanggal <= 0 || tanggal > 31 || cin.fail()) {
+        cin.clear();
+        cin.ignore(256, '\n');
+        if (tanggal > 31) {
+          system("cls");
+          cout << "Pastikan memasukkan tanggal 1-31!.\n";
+        }
         cout << "Tanggal harus berupa angka, dan tidak boleh 0!\n";
         cout << "Masukkan Tanggal : ";
         cin >> tanggal;
-         }
-         cout << "Masukkan bulan : ";
-        cin >> bulan;
-         while (bulan <= 0 || bulan > 12 || cin.fail()){
-          cin.clear();
-          cin.ignore(256, '\n');
-          if (bulan > 12) {
-            system("cls");
-            cout << "Pastikan memasukkan bulanl 1-12!.\n";
-          }
+      }
+      cout << "Masukkan bulan : ";
+      cin >> bulan;
+      while (bulan <= 0 || bulan > 12 || cin.fail()) {
+        cin.clear();
+        cin.ignore(256, '\n');
+        if (bulan > 12) {
+          system("cls");
+          cout << "Pastikan memasukkan bulanl 1-12!.\n";
+        }
         cout << "bulan harus berupa angka, dan tidak boleh 0!\n";
         cout << "Masukkan bulan : ";
         cin >> bulan;
-         }
-         cout << "Masukkan tahun : ";
-         cin >> tahun;
-         while (tahun <= 0 || cin.fail()){
-         cin.clear();
-         cin.ignore(256, '\n');
-         cout << "tahun harus berupa angka dan tidak boleh 0!\n";
-         cout << "Masukkan tahun : ";
-         cin >> tahun;
-        }  
-        cout << "Masukkan jumlah pemasukan : ";
-        cin >> pemasukan;
-        while (pemasukan < 0 || cin.fail()) {
+      }
+      cout << "Masukkan tahun : ";
+      cin >> tahun;
+      while (tahun <= 0 || cin.fail()) {
+        cin.clear();
+        cin.ignore(256, '\n');
+        cout << "tahun harus berupa angka dan tidak boleh 0!\n";
+        cout << "Masukkan tahun : ";
+        cin >> tahun;
+      }
+      cout << "Masukkan jumlah pemasukan : ";
+      cin >> pemasukan;
+      while (pemasukan < 0 || cin.fail()) {
         cin.clear();
         cin.ignore(256, '\n');
         system("cls");
         cout << "Maaf, anda harus memasukan angka dan tidak boleh negatif\n";
         cout << "masukan jumlah pemasukan : ";
-        cin>> pemasukan;
-        }
-        cout << "Masukkan jumlah pengeluaran : ";
-        cin >> pengeluaran;
-        while (pengeluaran < 0 || cin.fail()) {
+        cin >> pemasukan;
+      }
+      cout << "Masukkan jumlah pengeluaran : ";
+      cin >> pengeluaran;
+      while (pengeluaran < 0 || cin.fail()) {
         cin.clear();
-        cin.ignore(256,'\n');
+        cin.ignore(256, '\n');
         system("cls");
         cout << "Maaf, anda harus memasukan angka dan tidak boleh negatif\n";
         cout << "masukan jumlah pengeluaran : ";
-        cin>> pengeluaran;
-        }
+        cin >> pengeluaran;
+      }
 
-        DataBaru(&head, tanggal,bulan,tahun, pemasukan, pengeluaran);
-        cout << "\nData Berhasil Ditambahkan!\n";
-        break;
+      DataBaru(&head, tanggal, bulan, tahun, pemasukan, pengeluaran);
+      cout << "\nData Berhasil Ditambahkan!\n";
+      break;
     }
     case 2: {
-        system("cls");
-        cout << "=================================================\n";
-        cout << "============== Menampilkan Data =================\n";
-        cout << "=================================================\n\n";
-        LihatData(head);
-        break;
+      system("cls");
+      cout << "=================================================\n";
+      cout << "============== Menampilkan Data =================\n";
+      cout << "=================================================\n\n";
+      LihatData(head);
+      break;
     }
     case 3: {
-        system("cls");
-        cout << "=================================================\n";
-        cout << "============ Menghitung total Saldo =============\n";
-        cout << "=================================================\n\n";
-        double saldo = HitungTotal(head);
-        cout << "Total Saldo : " << saldo << endl;
-        break;
+      system("cls");
+      cout << "=================================================\n";
+      cout << "============ Menghitung total Saldo =============\n";
+      cout << "=================================================\n\n";
+      double saldo = HitungTotal(head);
+      cout << "Total Saldo : " << saldo << endl;
+      break;
     }
     case 4: {
-        system("cls");
-        cout << "Anda Telah Berhasil LogOut\n";
-        return main();
-        break;
+      system("cls");
+      cout << "Anda Telah Berhasil LogOut\n";
+      return main();
+      break;
     }
     case 5: {
-        system("cls");
-        cout << "Anda Berhasil Keluar!\n";
-        return 0;
-        break;
+      system("cls");
+      cout << "Anda Berhasil Keluar!\n";
+      return 0;
+      break;
     }
     default: {
-        system("cls");
-        cout << "Maaf, Menu Tidak Ditemukan\n";
-        break;
-    } 
+      system("cls");
+      cout << "Maaf, Menu Tidak Ditemukan\n";
+      break;
     }
-      cout << "ke menu/log out(y/t) ";
-      cin >> ulangi;
+    }
+    cout << "ke menu/log out(y/t) ";
+    cin >> ulangi;
   } while (ulangi == "y");
   system("cls");
   cout << "Anda Berhasil Log Out\n";
-    return main();
+  return main();
 }
